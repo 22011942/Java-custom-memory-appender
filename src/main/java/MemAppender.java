@@ -68,6 +68,6 @@ public class MemAppender extends AppenderSkeleton {
     }
     @Override
     public boolean requiresLayout() {
-        return true;
+        return false;
     }
 }
