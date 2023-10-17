@@ -42,17 +42,19 @@ public class MemAppender extends AppenderSkeleton {
     }
 
     public void printLogs() {
-        for (LoggingEvent event : logs) {
-            System.out.println(layout.format(event));
+        if (layout != null) {
+            for (LoggingEvent event : logs) {
+                System.out.println(layout.format(event));
+            }
+            logs.clear();
+        } else {
+            System.out.println("Layout not set");
         }
-        logs.clear();
     }
 
     public long getDiscardedLogCount() {
         return discardedLogCount;
     }
-
-
 
     @Override
     protected void append(LoggingEvent loggingEvent) {
@@ -68,6 +70,6 @@ public class MemAppender extends AppenderSkeleton {
     }
     @Override
     public boolean requiresLayout() {
-        return false;
+        return true;
     }
 }
